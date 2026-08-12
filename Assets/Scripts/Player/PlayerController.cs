@@ -82,5 +82,6 @@ public class PlayerController : MonoBehaviour
     {
         transform.position = initialPlayerPosition;
         transform.localScale = initialPlayerScale;
+        OnScaleUpdated?.Invoke();
     }
 }

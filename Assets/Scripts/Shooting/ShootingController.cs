@@ -71,7 +71,7 @@ public class ShootingController : MonoBehaviour
         if (!IsCharging)
             return;
 
-        currentProjectile.Launch(Vector3.forward, projectileConfig);
+        currentProjectile.Launch(player.TargetPosition, projectileConfig);
         currentProjectile = null;
     }
 }

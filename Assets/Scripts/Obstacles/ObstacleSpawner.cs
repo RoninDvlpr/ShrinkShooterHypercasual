@@ -36,7 +36,8 @@ public class ObstacleSpawner : MonoBehaviour
             if (validPosition.HasValue)
             {
                 placedPositions.Add(validPosition.Value);
-                Instantiate(obstaclePrefab, validPosition.Value + Vector3.up * obstaclePrefab.transform.localScale.y * 0.5f, Quaternion.identity, transform);
+                Vector3 spawnPosition = validPosition.Value + Vector3.up * obstaclePrefab.transform.localScale.y * 0.5f;
+                Instantiate(obstaclePrefab, spawnPosition, Quaternion.identity, transform);
             }
             else
             {
@@ -92,6 +93,14 @@ public class ObstacleSpawner : MonoBehaviour
         float randomX = GetRandomCoordinate(areaCenter.x, areaSize.x);
         float randomZ = GetRandomCoordinate(areaCenter.z, areaSize.y);
         return new Vector3(randomX, 0f, randomZ);
+    }
+
+    public void Reset()
+    {
+        foreach (Transform child in transform)
+            Destroy(child.gameObject);
+
+        SpawnObstacles();
     }
 
     void OnDrawGizmosSelected()

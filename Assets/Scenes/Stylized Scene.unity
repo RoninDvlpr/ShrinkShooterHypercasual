@@ -596,7 +596,8 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 23b28964d8d806e4ca601fcc7e4aaa1c, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 205530359142598316, guid: a567a02291317fc4c9b761b0c7c9c255, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1914,11 +1915,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c19690aaf2335cf4facaeaf2a77e83c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclePrefab: {fileID: 45189270706333395, guid: 26a6f3a2b0f5c2d45959d890a290ae46, type: 3}
+  obstaclePrefab: {fileID: 5185258321401043893, guid: 374231b3bfe905f4db0e7eaf66765f59, type: 3}
   ySpawnOffset: 0.5
   spawnAreaSize: {x: 10, y: 14}
   targetObstacleCount: 50
-  minDistanceBetweenObstacles: 1
+  minDistanceBetweenObstacles: 0.5
   maxPlacementAttempts: 30
 --- !u!1 &2076235885
 GameObject:

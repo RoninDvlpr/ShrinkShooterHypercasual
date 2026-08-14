@@ -19,7 +19,7 @@ MonoBehaviour:
   maxSpeed: 10
   selfDestructDistance: 50
   projectileGrowthRate: 0.5
-  playerScaleCostMultiplier: 0.3
+  playerScaleCostMultiplier: 0.2
   minProjectileScale: 0.1
   maxProjectileScale: 1
   explosionSizeMultiplierCurve:

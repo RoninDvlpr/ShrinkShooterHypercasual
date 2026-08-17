@@ -20,7 +20,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: 3000
   stringTagMap:
     RenderType: Transparent
   disabledShaderPasses: []
@@ -120,7 +120,7 @@ Material:
     - _DistortionIntensity: 0.5
     - _DstBlend: 1
     - _DualColorsState: 0
-    - _GlobalAlpha: 1
+    - _GlobalAlpha: 0.3
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1

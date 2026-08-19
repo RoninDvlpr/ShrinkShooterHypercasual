@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ObstacleSpawner : MonoBehaviour
 {
-    [SerializeField] GameObject obstaclePrefab;
-    [Tooltip("Pushes the obstacle up so it doesn't spawn inside the floor.")]
-    [SerializeField] float ySpawnOffset = 0.5f;
+    [SerializeField] Obstacle obstaclePrefab;
 
     [Header("Spawn Settings")]
     [SerializeField] Vector2 spawnAreaSize = new Vector2(10f, 20f);
@@ -17,6 +16,9 @@ public class ObstacleSpawner : MonoBehaviour
 
     [Tooltip("How many times the algorithm should try to find a valid spot before giving up on an obstacle.")]
     [SerializeField] int maxPlacementAttempts = 30;
+
+    [Tooltip("If enabled, each spawned obstacle will be given a random 90-degree step rotation around the Y-axis.")]
+    [SerializeField] bool applyRandomRotation;
 
 
 
@@ -36,8 +38,9 @@ public class ObstacleSpawner : MonoBehaviour
             if (validPosition.HasValue)
             {
                 placedPositions.Add(validPosition.Value);
-                Vector3 spawnPosition = validPosition.Value + Vector3.up * obstaclePrefab.transform.localScale.y * 0.5f;
-                Instantiate(obstaclePrefab, spawnPosition, Quaternion.identity, transform);
+                Vector3 spawnPosition = validPosition.Value + Vector3.up * obstaclePrefab.PivotYOffset;
+                Quaternion rotation = applyRandomRotation ? Quaternion.Euler(0f, Random.Range(0, 4) * 90f, 0f) : Quaternion.identity;
+                Instantiate(obstaclePrefab.gameObject, spawnPosition, rotation, transform);
             }
             else
             {

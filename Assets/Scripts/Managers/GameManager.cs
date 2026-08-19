@@ -27,13 +27,13 @@ public class GameManager : MonoBehaviour
     void OnEnable()
     {
         player.OnTargetReached += HandleVictory;
-        player.OnDepleted += HandleDefeat;
+        player.OnLevelFailed += HandleDefeat;
     }
 
     void OnDisable()
     {
         player.OnTargetReached -= HandleVictory;
-        player.OnDepleted -= HandleDefeat;
+        player.OnLevelFailed -= HandleDefeat;
     }
 
     void HandleVictory()

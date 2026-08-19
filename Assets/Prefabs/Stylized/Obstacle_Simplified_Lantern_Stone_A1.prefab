@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5808148315857562443}
   - component: {fileID: 4800664845439418049}
   - component: {fileID: 7746324797062849556}
-  - component: {fileID: 7216124370704828911}
+  - component: {fileID: 8369168453789985837}
   m_Layer: 7
   m_Name: Obstacle_Simplified_Lantern_Stone_A1
   m_TagString: Untagged
@@ -107,7 +107,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.42, y: 1.6, z: 0.42}
   m_Center: {x: 0, y: 0.785, z: -0.0004170388}
---- !u!114 &7216124370704828911
+--- !u!114 &8369168453789985837
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,9 +116,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 5185258321401043893}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e48384205203c2445accd869c05b3457, type: 3}
+  m_Script: {fileID: 11500000, guid: 852cd4cef71035546978d935d869fd5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colliders:
+  - {fileID: 7746324797062849556}
+  pivotYOffset: -0.05
+  obstacleSinkDistance: -2
+  sinkDuration: 1
+  lanternLight: {fileID: 1219426266487428955}
+  preSinkDelay: 0.35
 --- !u!1001 &6050109897263099535
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -127,6 +134,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7336037782326004182}
     m_Modifications:
+    - target: {fileID: 2021937951370254181, guid: 675c8b17ff7188c438e42f2e37f278ed, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2097254302685778290, guid: 675c8b17ff7188c438e42f2e37f278ed, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2382255963463420807, guid: 675c8b17ff7188c438e42f2e37f278ed, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -135,12 +150,24 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: f15489a8595fe21498a80320b83b9195, type: 2}
+    - target: {fileID: 4835189652815264212, guid: 675c8b17ff7188c438e42f2e37f278ed, type: 3}
+      propertyPath: prewarm
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835189652815264212, guid: 675c8b17ff7188c438e42f2e37f278ed, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5732395973861791349, guid: 675c8b17ff7188c438e42f2e37f278ed, type: 3}
       propertyPath: m_Name
       value: FireSmall
       objectReference: {fileID: 0}
     - target: {fileID: 5732395973861791349, guid: 675c8b17ff7188c438e42f2e37f278ed, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165889707127562660, guid: 675c8b17ff7188c438e42f2e37f278ed, type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7414324338775327558, guid: 675c8b17ff7188c438e42f2e37f278ed, type: 3}
@@ -199,6 +226,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7969856477149552776, guid: 675c8b17ff7188c438e42f2e37f278ed, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8923903894229259504, guid: 675c8b17ff7188c438e42f2e37f278ed, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -208,6 +239,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 675c8b17ff7188c438e42f2e37f278ed, type: 3}
+--- !u!198 &1219426266487428955 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4835189652815264212, guid: 675c8b17ff7188c438e42f2e37f278ed, type: 3}
+  m_PrefabInstance: {fileID: 6050109897263099535}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4521832999050594452 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7869628865805411867, guid: 675c8b17ff7188c438e42f2e37f278ed, type: 3}

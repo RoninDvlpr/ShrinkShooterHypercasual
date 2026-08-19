@@ -118,3 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e48384205203c2445accd869c05b3457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colliders:
+  - {fileID: 3765811403996214038}
+  pivotYOffset: 0.5
+  obstacleSinkDistance: -2
+  sinkDuration: 1

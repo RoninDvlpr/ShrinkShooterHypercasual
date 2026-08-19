@@ -5,9 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewProjectileConfig", menuName = "Gameplay/Projectile Config")]
 public class ProjectileConfig : ScriptableObject
 {
-    [SerializeField] LayerMask targetLayer = 1 << 7;
-    public LayerMask TargetLayer => targetLayer;
-
     [Header("Movement & Range")]
     [SerializeField] float minSpeed = 5f;
     public float MinSpeed => minSpeed;

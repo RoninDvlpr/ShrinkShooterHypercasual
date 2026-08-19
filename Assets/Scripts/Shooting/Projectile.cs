@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
+using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class Projectile : MonoBehaviour
 {
+    public static event Action ProjectileDestroyed;
+
+    static int activeProjectiles = 0;
+    public static bool HasActiveProjectiles => activeProjectiles > 0;
+
+
     [SerializeField] Shockwave shockwavePrefab;
 
     #region Config
@@ -23,6 +29,18 @@ public class Projectile : MonoBehaviour
     readonly RaycastHit[] raycastResuts = new RaycastHit[10]; // Used for non-alocating spherecast checks
     readonly Collider[] hitColliders = new Collider[100]; // Used for non-alocating sphere overlap checks
 
+
+
+    void OnEnable()
+    {
+        activeProjectiles++;
+    }
+
+    void OnDisable()
+    {
+        activeProjectiles--;
+        ProjectileDestroyed?.Invoke();
+    }
 
     public void Launch(Vector3 direction, ProjectileConfig projectileConfig)
     {
@@ -64,7 +82,7 @@ public class Projectile : MonoBehaviour
 
     bool TryGetClosestHit(float distanceToCheck, out RaycastHit closestHit)
     {
-        int hitCount = Physics.SphereCastNonAlloc(transform.position, Radius, moveDirection, raycastResuts, distanceToCheck, config.TargetLayer);
+        int hitCount = Physics.SphereCastNonAlloc(transform.position, Radius, moveDirection, raycastResuts, distanceToCheck, GameLayers.ProjectileCollisionMask);
         
         if (hitCount == 0)
         {
@@ -107,7 +125,7 @@ public class Projectile : MonoBehaviour
     void ApplyDamage(float explosionSize)
     {
         float explosionRadius = explosionSize / 2f;
-        int hitCount = Physics.OverlapSphereNonAlloc(transform.position, explosionRadius, hitColliders, config.TargetLayer);
+        int hitCount = Physics.OverlapSphereNonAlloc(transform.position, explosionRadius, hitColliders, GameLayers.ProjectileCollisionMask);
 
         // Calculate delays for every obstacle based on how fast the shockwave reaches them, and apply damage
         for (int i = 0; i < hitCount; i++)
@@ -117,7 +135,7 @@ public class Projectile : MonoBehaviour
             float timeToReach = (distance / explosionRadius) * config.ExplosionDuration; // Shockwave is presumed to travel at constant speed
 
             if (obstacleCollider.TryGetComponent(out Obstacle obstacle))
-                obstacle.ApplyDamageDelayed(timeToReach);
+                obstacle.ApplyDamage(timeToReach);
         }
     }
 

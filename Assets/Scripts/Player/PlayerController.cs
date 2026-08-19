@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     public bool CanShoot => !IsDepleted && !IsMovingToTarget;
     #endregion
 
-    public event Action OnScaleUpdated, OnDepleted, OnTargetReached;
+    public event Action OnScaleUpdated, OnDepleted, OnTargetReached, OnLevelFailed;
 
     readonly RaycastHit[] raycastResuts = new RaycastHit[10]; // Used for non-alocating boxcast checks
 
@@ -30,12 +30,14 @@ public class PlayerController : MonoBehaviour
 
     void OnEnable()
     {
-        Obstacle.OnObstacleDesroyed += CheckPathIsClear;
+        Obstacle.ObstacleRemoved += CheckLevelCompletion;
+        Projectile.ProjectileDestroyed += CheckLevelCompletion;
     }
 
     void OnDisable()
     {
-        Obstacle.OnObstacleDesroyed -= CheckPathIsClear;
+        Obstacle.ObstacleRemoved -= CheckLevelCompletion;
+        Projectile.ProjectileDestroyed -= CheckLevelCompletion;
     }
 
     /// <summary>
@@ -50,16 +52,27 @@ public class PlayerController : MonoBehaviour
         OnScaleUpdated?.Invoke();
 
         if (IsDepleted)
+        {
             OnDepleted?.Invoke();
+            CheckLevelCompletion();
+        }
 
         return !IsDepleted;
     }
 
-    void CheckPathIsClear()
+    void CheckLevelCompletion()
     {
         if (IsMovingToTarget == true)
             return;
 
+        if (CheckPathIsClear())
+            TravelToTarget();
+        else if (IsDepleted && !Projectile.HasActiveProjectiles && !Obstacle.HasObstaclesAwaitingRemoval)
+            OnLevelFailed?.Invoke();
+    }
+
+    bool CheckPathIsClear()
+    {
         float height = animationController.RequiredClearanceHeight;
         Vector3 center = transform.position + Vector3.up * height / 2f;
         Vector3 halfExtents = (transform.localScale + Vector3.up * height) / 2f;
@@ -67,9 +80,8 @@ public class PlayerController : MonoBehaviour
         Quaternion rotationToTarget = Quaternion.LookRotation(directionToTarget);
         float distance = Vector3.Distance(transform.position, TargetPosition);
 
-        int hitCount = Physics.BoxCastNonAlloc(center, halfExtents, directionToTarget, raycastResuts, rotationToTarget, distance);
-        if (hitCount == 0)
-            TravelToTarget();
+        int hitCount = Physics.BoxCastNonAlloc(center, halfExtents, directionToTarget, raycastResuts, rotationToTarget, distance, GameLayers.ObstacleMask);
+        return hitCount == 0;
     }
 
     public void TravelToTarget()

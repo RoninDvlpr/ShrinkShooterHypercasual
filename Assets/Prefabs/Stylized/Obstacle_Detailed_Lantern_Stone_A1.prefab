@@ -272,3 +272,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e48384205203c2445accd869c05b3457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colliders:
+  - {fileID: 7746324797062849556}
+  - {fileID: 5369460455229809010}
+  - {fileID: 3843867465543655459}
+  - {fileID: 8374468336272214032}
+  - {fileID: 731815328024735606}
+  - {fileID: 7539464305503377499}
+  - {fileID: 4298660678682837761}
+  - {fileID: 5685644696941967613}
+  obstacleSinkDistance: -2
+  sinkDuration: 1

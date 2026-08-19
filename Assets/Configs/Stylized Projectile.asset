@@ -12,9 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bb7e1cf73f9cd248820e6d4e625451a, type: 3}
   m_Name: Stylized Projectile
   m_EditorClassIdentifier: 
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 128
   minSpeed: 5
   maxSpeed: 10
   selfDestructDistance: 50
@@ -46,4 +43,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  explosionDuration: 0.25
+  explosionDuration: 0.135

@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     public bool CanShoot => !IsDepleted && !IsMovingToTarget;
     #endregion
 
-    public event Action OnScaleUpdated, OnDepleted, OnTargetReached, OnLevelFailed;
+    public event Action OnScaleUpdated, OnDepleted, OnStartedMovingToTarget, OnTargetReached, OnLevelFailed;
 
     readonly RaycastHit[] raycastResuts = new RaycastHit[10]; // Used for non-alocating boxcast checks
 
@@ -88,6 +88,7 @@ public class PlayerController : MonoBehaviour
     {
         target.StartWatchingPlayer(transform);
         animationController.MoveToTarget(TargetPosition, () => OnTargetReached?.Invoke());
+        OnStartedMovingToTarget?.Invoke();
     }
 
     public void Reset()

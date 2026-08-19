@@ -19,12 +19,14 @@ public class ShootingController : MonoBehaviour
     {
         inputManager.OnPrimaryTouchStarted += HandleTouchStart;
         inputManager.OnPrimaryTouchEnded += HandleTouchEnd;
+        player.OnStartedMovingToTarget += ReleaseShot;
     }
 
     void OnDisable()
     {
         inputManager.OnPrimaryTouchStarted -= HandleTouchStart;
         inputManager.OnPrimaryTouchEnded -= HandleTouchEnd;
+        player.OnStartedMovingToTarget -= ReleaseShot;
     }
 
     void HandleTouchStart()
@@ -71,7 +73,7 @@ public class ShootingController : MonoBehaviour
         if (!IsCharging)
             return;
 
-        currentProjectile.Launch(player.TargetPosition, projectileConfig);
+        currentProjectile?.Launch(player.TargetPosition, projectileConfig);
         currentProjectile = null;
     }
 }

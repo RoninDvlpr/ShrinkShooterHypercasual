@@ -44,6 +44,9 @@ public class Projectile : MonoBehaviour
 
     public void Launch(Vector3 direction, ProjectileConfig projectileConfig)
     {
+        if (isLaunched)
+            return;
+
         config = projectileConfig;
         moveDirection = direction.normalized;
         moveSpeed = config.CalculateProjectileSpeed(transform.localScale.x);

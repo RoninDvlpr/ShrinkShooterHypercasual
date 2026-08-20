@@ -30,19 +30,23 @@ public class Shockwave : MonoBehaviour
     {
         propBlock = new MaterialPropertyBlock();
     }
+
     public void Play(Action onCompleteCallback = null)
     {
         Play(transform.localScale.x * defaultExpansionCoefficient, onCompleteCallback);
     }
+
     public void Play(float blastSize, Action onCompleteCallback = null)
     {
         Play(blastSize, defaultDuration, onCompleteCallback);
     }
+
     public void Play(float startingBlastSize, float finalBlastSize, float duration, Action onCompleteCallback = null)
     {
         transform.localScale = Vector3.one * startingBlastSize;
         Play(finalBlastSize, duration, onCompleteCallback);
     }
+
     public void Play(float blastSize, float duration, Action onCompleteCallback = null)
     {
         Sequence explosionSequence = DOTween.Sequence();
@@ -70,11 +74,13 @@ public class Shockwave : MonoBehaviour
             gameObject.SetActive(false);
         });
     }
+
     void SetRenderersAlpha(float alpha)
     {
         foreach (Renderer renderer in shockwaveRenderers)
             SetRendererAlpha(renderer, alpha);
     }
+
     void SetRendererAlpha(Renderer renderer, float alpha)
     {
         renderer.GetPropertyBlock(propBlock);

@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     [Header("UI")]
     [SerializeField] GameObject failUI;
+    [SerializeField] OverlayImage overlay;
 
     [Header("Core Actors")]
     [SerializeField] PlayerController player;
@@ -13,7 +14,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] Target target;
 
     [Header("Transitions")]
-    [SerializeField] CanvasGroup fadeScreen;
     [SerializeField] float fadeDuration = 0.5f;
 
     public static int NumOfCompletedLevels { get; private set; }
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     void HandleVictory()
     {
         NumOfCompletedLevels++;
-        ResetLevel();
+        ResetLevelWithFadeAnimation();
     }
 
     void HandleDefeat()
@@ -50,7 +50,12 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         NumOfCompletedLevels = 0;
-        ResetLevel();
+        ResetLevelWithFadeAnimation();
+    }
+
+    void ResetLevelWithFadeAnimation()
+    {
+        overlay.PerformDefaultFadeCycle(ResetLevel);
     }
 
     void ResetLevel()

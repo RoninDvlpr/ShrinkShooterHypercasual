@@ -13,9 +13,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] ObstacleSpawner spawner;
     [SerializeField] Target target;
 
-    [Header("Transitions")]
-    [SerializeField] float fadeDuration = 0.5f;
-
     public static int NumOfCompletedLevels { get; private set; }
     /// <summary>
     /// Raised upon level completion. The int parameter represents the number of completed levels.

@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class Shockwave : MonoBehaviour
 {
+    [Tooltip("The parent transfrom of the shockwave spheres. The spheres will be scaled duriung the animation to create the shockwave effect.")]
     [SerializeField] Transform shockwavesParent;
     [Tooltip("The renderers that will be affected by the shockwave's alpha fade-out. The used shader is supposed to be the UnversalShader asset that has the '_GlobalAlpha' property.")]
     [SerializeField] List<Renderer> shockwaveRenderers;
@@ -15,6 +16,8 @@ public class Shockwave : MonoBehaviour
     [SerializeField] float fadeOutDurationCoefficient = 1.65f;
     [Tooltip("The overshoot coefficient determines how much the sphere will scale relative to the blast size during the fade-out phase. The final size will be the blast size multiplied by this coefficient.")]
     [SerializeField] float overshootCoefficient = 1.15f;
+    [Tooltip("The delay before the shockwave object is destroyed after the animation ends. This is used to avoid abruptly cutting off the particle effects.")]
+    [SerializeField] float destructionDelay = 2.5f;
 
     [Header("Defaults")]
     [SerializeField] float defaultDuration = 0.15f;
@@ -98,7 +101,7 @@ public class Shockwave : MonoBehaviour
         explosionSequence.OnComplete(() =>
         {
             onCompleteCallback?.Invoke();
-            Destroy(gameObject); // Object pooling migh be implemented here in the future
+            Destroy(gameObject, destructionDelay); // Object pooling migh be implemented here in the future
         });
     }
 

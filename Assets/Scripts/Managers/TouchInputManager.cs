@@ -44,8 +44,8 @@ public class TouchInputManager : MonoBehaviour
         if (activeFinger != null) return;
 
         // UI click-through protection
-        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(finger.index))
-            return;
+        //if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(finger.index))
+        //    return;
 
         activeFinger = finger;
         OnPrimaryTouchStarted?.Invoke();

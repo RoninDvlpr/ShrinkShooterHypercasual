@@ -9863,7 +9863,6 @@ GameObject:
   - component: {fileID: 961829014572330314}
   - component: {fileID: 2071188220411421598}
   - component: {fileID: 4131802327259902734}
-  - component: {fileID: 2310513256142029919}
   m_Layer: 0
   m_Name: Inner_Shockwave_1
   m_TagString: Untagged
@@ -9936,23 +9935,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2310513256142029919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7876720710729783455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b8f7f37e399fe54cb0dea5c248b81ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shockwaveRenderers: []
-  fadeOutDurationCoefficient: 1.65
-  overshootCoefficient: 1.15
-  defaultDuration: 0.15
-  defaultExpansionCoefficient: 2
 --- !u!1 &8000674783571035299
 GameObject:
   m_ObjectHideFlags: 0
@@ -14860,7 +14842,6 @@ GameObject:
   - component: {fileID: 2584635221016843293}
   - component: {fileID: 1677891335164707456}
   - component: {fileID: 6700482288981778010}
-  - component: {fileID: 9012530122635221893}
   m_Layer: 0
   m_Name: Inner_Shockwave_2
   m_TagString: Untagged
@@ -14933,23 +14914,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &9012530122635221893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8646843552340953375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b8f7f37e399fe54cb0dea5c248b81ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shockwaveRenderers: []
-  fadeOutDurationCoefficient: 1.65
-  overshootCoefficient: 1.15
-  defaultDuration: 0.15
-  defaultExpansionCoefficient: 2
 --- !u!1 &8790199576964828562
 GameObject:
   m_ObjectHideFlags: 0

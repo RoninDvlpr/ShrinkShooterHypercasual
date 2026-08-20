@@ -71,7 +71,7 @@ public class Shockwave : MonoBehaviour
         explosionSequence.OnComplete(() =>
         {
             onCompleteCallback?.Invoke();
-            gameObject.SetActive(false);
+            Destroy(gameObject); // Object pooling migh be implemented here in the future
         });
     }
 
